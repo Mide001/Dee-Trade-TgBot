@@ -285,6 +285,19 @@ bot.onText(/\/start/, (msg) => {
   bot.sendMessage(chatId, welcomeMessage);
 });
 
+// Listen for text messages (catch-all handler)
+bot.on("text", (msg) => {
+  const chatId = msg.chat.id;
+  const text = msg.text;
+
+  // Check if the message text doesn't match any specific commands
+  if (!text.match(/^\/(help|calculate|checkPrice)/)) {
+    // Respond with a default message for unrecognized commands
+    const defaultMessage = "Sorry, I don't understand that command. Type /help to see available commands.";
+    bot.sendMessage(chatId, defaultMessage);
+  }
+});
+
 
 // Handle errors
 bot.on("polling_error", (error) => {
