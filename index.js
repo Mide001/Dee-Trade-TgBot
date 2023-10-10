@@ -256,12 +256,16 @@ bot.on("text", async (msg) => {
         // Update the user's state to 'waiting_for_leverage'
         userState.step = "waiting_for_leverage";
         break;
+        case "waiting_for_leverage":
+          break;
 
       default:
         // Handle any other steps or invalid input
         bot.sendMessage(chatId, "Invalid input or step.");
         break;
     }
+  } else {
+    bot.sendMessage(chatId, "Sorry, I don't understand that input. Please start a valid command or conversation.");
   }
 });
 
